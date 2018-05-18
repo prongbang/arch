@@ -14,7 +14,7 @@ Build:
 ```
 $ make build
 ```
-Install
+Install:
 ```
 $ make install
 ```
