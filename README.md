@@ -5,6 +5,20 @@
 $ go get -u github.com/prongbang/arch
 ```
 
+## Run from `Makefile`:
+Run:
+```
+$ make run
+```
+Build:
+```
+$ make build
+```
+Install
+```
+$ make install
+```
+
 Interface and Implements Example:
 ```go
 package main
