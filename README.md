@@ -38,3 +38,10 @@ func main() {
     fmt.Println(b.GetName())
 }
 ```
+
+Output:
+```
+Hello Golang
+
+Program exited.
+```
