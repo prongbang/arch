@@ -36,7 +36,7 @@ func (h *BookHandler) GetAll(c echo.Context) error {
 }
 
 func (h *BookHandler) GetById(c echo.Context) error {
-	id := c.QueryParam("id")
+	id := c.Param("id")
 	if id != "" {
 		idInt, iErr := strconv.Atoi(id)
 		if idInt > 0 && iErr == nil {
@@ -96,14 +96,15 @@ func (h *BookHandler) Update(c echo.Context) error {
 }
 
 func (h *BookHandler) Delete(c echo.Context) error {
-	var book model.Book
-	if err := c.Bind(&book); err != nil {
-		return c.JSON(http.StatusBadGateway, echo.Map{
-			"message": "Data not found!",
-		})
-	}
-	if book.ID > 0 {
-		return c.JSON(http.StatusOK, h.Repo.Update(&book))
+	id := c.Param("id")
+	if id != "" {
+		if idInt, err := strconv.Atoi(id); idInt > 0 && err == nil {
+			return c.JSON(http.StatusOK, h.Repo.Delete(&model.Book{
+				ID:    idInt,
+				Name:  "Book " + id,
+				Price: float64(1000 * idInt),
+			}))
+		}
 	}
 	return c.JSON(http.StatusNotFound, echo.Map{
 		"message": "Id not found!",

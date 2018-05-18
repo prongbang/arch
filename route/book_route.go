@@ -11,7 +11,7 @@ type BookRouter struct {
 
 func (r BookRouter) Initial(e *echo.Echo) {
 	e.GET("/books", r.Handle.GetAll)
-	e.GET("/book", r.Handle.GetById)
+	e.GET("/book/:id", r.Handle.GetById)
 	e.PUT("/book/:id", r.Handle.Update)
 	e.PATCH("/book/:id", r.Handle.Update)
 	e.POST("/book", r.Handle.Create)
