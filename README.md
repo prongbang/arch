@@ -163,16 +163,44 @@ func Create(newName string) *BookImplement {
     return &BookImplement{name: newName}
 }
 
+// -------------------------------------------------
+
+type Book2Implement struct {
+    name string
+} 
+
+func (i *Book2Implement) SetName(newName string) {
+    i.name =  i.name + " " + newName + " : book2"
+}   
+
+func (i *Book2Implement) GetName() string {
+    return i.name + " : book2"
+}
+
+func CreateBook2(newName string) *Book2Implement {
+    return &Book2Implement{name: newName}
+}
+
 func main() {
-    var b IBooker = Create("Hello")
+    b := Create("Hello") // BookImplement
     b.SetName("Golang")
-    fmt.Println(b.GetName())
+
+    Print(b)
+
+    b2 := CreateBook2("Hello") // Book2Implement
+
+    Print(b2)
+}
+
+func Print(ib IBooker) {
+    fmt.Println(ib.GetName())
 }
 ```
 
 Output:
 ```
 Hello Golang
+Hello : book2
 
 Program exited.
 ```
